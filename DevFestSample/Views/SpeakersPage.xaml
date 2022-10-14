@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:DevFestSample.ViewModels"
+    xmlns:model="clr-namespace:DevFestSample.Models"
+    x:Class="DevFestSample.Views.SpeakersPage"
+    Title="Oradores"
+    x:DataType="vm:SpeakersViewModel">
+  <ContentPage.ToolbarItems>
+        <ToolbarItem Text="↑"
+                     Priority="0"
+                     Order="Primary"
+                     Command="{Binding SortSpeakerCommand}"
+                     CommandParameter="Ascending"/>
+       <ToolbarItem Text="↓"
+                    Order="Primary"
+                    Priority="1"
+                    Command="{Binding SortSpeakerCommand}"
+                    CommandParameter="Descending"/>
+   </ContentPage.ToolbarItems>
+    <ListView ItemsSource="{Binding Speakers}"
+              HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell x:DataType="model:Speaker">
+                <Grid Padding="10"
+                      RowDefinitions="Auto, Auto, Auto"
+                      ColumnDefinitions="Auto, *"
+                      ColumnSpacing="20">
+
+                    <Image Source="{Binding Photo}"
+                           WidthRequest="80"   
+                           HeightRequest="80"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Grid.RowSpan="3">
+                            <Image.Clip>
+                                <EllipseGeometry
+                                    Center="40,40"
+                                    RadiusX="40"
+                                    RadiusY="40"/>
+                            </Image.Clip>
+                     </Image>
+
+                    <Label Grid.Column="1"
+                           Grid.Row="0"
+                           VerticalOptions="End"
+                           Text="{Binding Name}"
+                           FontAttributes="Bold" />
+
+                    <Label Grid.Row="1"
+                           Grid.Column="1"
+                           Text="{Binding Headline}"
+                           LineBreakMode="TailTruncation"
+                           FontAttributes="Italic"
+                           VerticalOptions="Start" />
+
+                     <Label Grid.Row="2"
+                           Grid.Column="1"
+                           Text="{Binding Tag}"
+                           HorizontalOptions="EndAndExpand"
+                           Padding="0,0,20,0"
+                           TextColor="Purple"
+                           FontAttributes="Italic"
+                           FontSize="15"/>
+                </Grid>
+              </ViewCell>
+            </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+ </ContentPage>

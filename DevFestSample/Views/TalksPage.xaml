@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DevFestSample.Views.TalksPage" xmlns:vm="clr-namespace:DevFestSample.ViewModels"
+    xmlns:model="clr-namespace:DevFestSample.Models"
+    Title="Charlas"
+    x:DataType="vm:TalksViewModel">
+    <ListView ItemsSource="{Binding Talks}"
+              HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell x:DataType="model:Talk">
+
+                <StackLayout>
+                    <Label Text="{Binding Title}"
+                           BackgroundColor="Purple"
+                           Opacity="0.5"
+                           Padding="10"
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           FontSize="15"/>
+
+                    <Label Text="{Binding Description}"
+                           Padding="10"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           VerticalOptions="Start" />
+
+                    <StackLayout Orientation="Horizontal"
+                                 Padding="10">
+                        <Image Source="{Binding Speaker.Photo}"
+                           WidthRequest="30"   
+                           HeightRequest="30"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center">
+                            <Image.Clip>
+                                <EllipseGeometry
+                                    Center="15,15"
+                                    RadiusX="15"
+                                    RadiusY="15"/>
+                            </Image.Clip>
+                       </Image>
+                       <Label VerticalOptions="Center"
+                              Text="{Binding Speaker.Name}"
+                              FontAttributes="Italic"
+                              FontSize="12" />
+
+                        <Label HorizontalOptions="EndAndExpand"
+                               VerticalOptions="Center"
+                               TextColor="Purple"
+                               FontAttributes="Italic"
+                               FontSize="15">
+                          <Label.Text>
+                            <MultiBinding StringFormat="{}{0:hh\:mm tt} - {1:hh\:mm tt}">
+                                <Binding Path="StartTime"  />
+                                <Binding Path="EndTime" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                    </StackLayout>
+                </StackLayout>
+              </ViewCell>
+            </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+ </ContentPage>
