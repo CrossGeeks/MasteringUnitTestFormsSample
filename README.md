@@ -3,5 +3,5 @@
 Sample of presentation about Mastering Unit Test. 
 
 <p align="center">
-<img  width="500" src="sample"/>
+<img  width="500" src="sample.png"/>
 </p>
